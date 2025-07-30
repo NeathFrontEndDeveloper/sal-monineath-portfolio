@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
+import { Logo } from "@/constants/dataConsts";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -33,7 +34,7 @@ const Navbar = () => {
             href="/"
             className="text-2xl font-bold text-white hover:text-[#00ff99] transition-colors duration-300"
           >
-            Sal Monineath
+            {Logo}
           </Link>
 
           {/* Desktop Nav */}
