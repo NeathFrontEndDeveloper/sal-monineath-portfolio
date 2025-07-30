@@ -37,12 +37,14 @@ export default function RootLayout({
         </header>
 
         {/* Main content area with flex-grow to push footer down */}
-        <main className="flex mt-28 sm:pt-20 md:pt-24 lg:pt-28 relative">
+        <main>
           <div className="container mx-auto">{children}</div>
         </main>
 
         {/* Footer at bottom */}
-        <Footer />
+        <div>
+          <Footer />
+        </div>
       </body>
     </html>
   );

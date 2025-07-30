@@ -1,5 +1,4 @@
 import { Github, Linkedin, Facebook, Mail } from "lucide-react";
-// import { faTelegram } from "@fortawesome/free-brands-svg-icons";
 
 export const socialLinks = [
   {
@@ -29,3 +28,5 @@ export const titles = [
   "Graphic Designer",
   "Problem Solver",
 ];
+
+export const Logo = "Sol Monineath";
