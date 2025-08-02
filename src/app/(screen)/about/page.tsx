@@ -1,15 +1,16 @@
 "use client";
 
-import React from "react";
+import React, { use } from "react";
 import Image from "next/image";
 import ProfileImage from "@/assets/me.jpg";
 import { Button } from "@/components/ui/button";
-import { useConnect } from "@/constants/functions";
+import { useConnect, useViewWork } from "@/constants/functions";
 import { MoveRight } from "lucide-react";
 import { motion } from "framer-motion";
 
 const About: React.FC = () => {
   const connectBtn = useConnect();
+  const viewMyWork = useViewWork();
 
   return (
     <section className="w-full min-h-screen flex items-center justify-center text-white px-4 py-8 sm:py-12 lg:py-16">
@@ -110,7 +111,7 @@ const About: React.FC = () => {
             </div>
 
             {/* Stats or highlights - responsive grid */}
-            <div className="grid grid-cols-2 gap-3 xs:gap-4 sm:gap-5 md:gap-6 pt-3 xs:pt-4 sm:pt-5 md:pt-6 max-w-xs xs:max-w-sm sm:max-w-md md:max-w-lg mx-auto lg:mx-0">
+            {/* <div className="grid grid-cols-2 gap-3 xs:gap-4 sm:gap-5 md:gap-6 pt-3 xs:pt-4 sm:pt-5 md:pt-6 max-w-xs xs:max-w-sm sm:max-w-md md:max-w-lg mx-auto lg:mx-0">
               <div className="text-center lg:text-left p-2 xs:p-3 sm:p-4 md:p-5 rounded-lg bg-white/5 backdrop-blur-sm border border-[#00ff99]/20 hover:bg-white/10 hover:border-[#00ff99]/40 transition-all duration-300">
                 <div className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-3xl xl:text-4xl font-bold text-[#00ff99]">
                   3+
@@ -127,10 +128,15 @@ const About: React.FC = () => {
                   Projects Completed
                 </div>
               </div>
-            </div>
+            </div> */}
 
             {/* CTA Button - responsive sizing */}
-            <div className="pt-3 xs:pt-4 sm:pt-5 md:pt-6">
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="pt-3 xs:pt-4 sm:pt-5 md:pt-6 space-x-2 sm:space-x-4"
+            >
               <Button
                 type="button"
                 onClick={connectBtn}
@@ -140,7 +146,16 @@ const About: React.FC = () => {
                 Let's Connect
                 <MoveRight className="inline-block ml-1 xs:ml-2" size={16} />
               </Button>
-            </div>
+
+              <Button
+                type="button"
+                onClick={viewMyWork}
+                variant="outline"
+                className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 cursor-pointer text-sm sm:text-base"
+              >
+                View My Work
+              </Button>
+            </motion.div>
           </div>
         </div>
       </div>
