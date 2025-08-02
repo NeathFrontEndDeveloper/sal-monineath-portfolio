@@ -4,26 +4,16 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Profile from "@/assets/Profile.jpg";
 import { Button } from "@/components/ui/button";
-import {
-  useTypingEffect,
-  useViewWork,
-  useConnect,
-} from "@/constants/functions";
+import { useTypingEffect, useSkills, useAboutMe } from "@/constants/functions";
 import SocialLinks from "@/components/socialLinks";
 import { MoveRight } from "lucide-react";
+import { motion } from "framer-motion";
 
 const Home = () => {
-  const [showContent, setShowContent] = useState(false);
-
-  // Show content on page load
-  useEffect(() => {
-    setTimeout(() => setShowContent(true), 100);
-  }, []);
-
-  // Function
+  // Functions
   const Texts = useTypingEffect();
-  const viewWork = useViewWork();
-  const connectBtn = useConnect();
+  const viewTechStack = useSkills();
+  const aboutMe = useAboutMe();
 
   return (
     <section className="w-full min-h-screen text-white relative overflow-hidden">
@@ -34,73 +24,96 @@ const Home = () => {
       <div className="relative z-10 container mx-auto px-4 py-8 sm:py-12 lg:py-20 min-h-screen flex items-center">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-center w-full">
           {/* Text Content */}
-          <div
-            className={`space-y-6 sm:space-y-8 text-center lg:text-left transition-all duration-1000 ${
-              showContent
-                ? "translate-y-0 opacity-100"
-                : "translate-y-12 opacity-0"
-            }`}
+          <motion.div
+            initial={{ opacity: 0, y: -100 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="space-y-6 sm:space-y-8 text-center lg:text-left"
           >
             {/* Hello section */}
-            <div className="space-y-3 sm:space-y-4">
+            <motion.div
+              initial={{ opacity: 0, y: -100 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="space-y-3 sm:space-y-4"
+            >
               <p className="text-green-400 text-base sm:text-lg font-medium">
                 👋 Hello there! I'm
               </p>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
                 Neath
               </h1>
-            </div>
+            </motion.div>
 
             {/* Typing effect - improved mobile spacing */}
-            <div className="min-h-[4rem] sm:min-h-[5rem] flex items-center justify-center lg:justify-start">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="min-h-[4rem] sm:min-h-[5rem] flex items-center justify-center lg:justify-start"
+            >
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold text-green-400 font-mono text-center lg:text-left">
                 <span className="text-white">I'm a</span> {Texts}
                 <span className="animate-pulse">|</span>
               </h2>
-            </div>
+            </motion.div>
 
             {/* Description */}
-            <p className="text-gray-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0">
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="text-gray-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0"
+            >
               Passionate about creating innovative web solutions and user
               experiences. I specialize in modern web technologies and love
               turning ideas into reality.
-            </p>
+            </motion.p>
 
             {/* Buttons - improved mobile layout */}
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start items-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+              className="flex flex-col sm:flex-row space-x-2 sm:space-x-4 justify-center lg:justify-start items-center"
+            >
               <Button
                 type="button"
-                onClick={connectBtn}
+                onClick={aboutMe}
                 variant="secondary"
                 className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 cursor-pointer text-sm sm:text-base"
               >
-                Let's Connect
+                About me
                 <MoveRight className="inline-block ml-2" size={18} />
               </Button>
 
               <Button
                 type="button"
-                onClick={viewWork}
+                onClick={viewTechStack}
                 variant="outline"
                 className="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 cursor-pointer text-sm sm:text-base"
               >
-                View My Work
+                View Tech Stack
               </Button>
-            </div>
+            </motion.div>
 
             {/* Social Links */}
-            <div className="flex items-center justify-center lg:justify-start space-x-6 pt-4">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 1.0 }}
+              className="flex items-center justify-center lg:justify-start space-x-6 pt-4"
+            >
               <SocialLinks />
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* Profile Image - significantly improved mobile responsiveness */}
-          <div
-            className={`flex justify-center lg:justify-end transition-all duration-1000 delay-300 mt-8 lg:mt-0 ${
-              showContent
-                ? "translate-x-0 opacity-100"
-                : "translate-x-12 opacity-0"
-            }`}
+          <motion.div
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+            className="flex justify-center lg:justify-end mt-8 lg:mt-0"
           >
             <div className="relative group">
               {/* Glowing border - responsive sizing */}
@@ -128,7 +141,7 @@ const Home = () => {
                 <span className="sm:hidden">Available! 🚀</span>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
